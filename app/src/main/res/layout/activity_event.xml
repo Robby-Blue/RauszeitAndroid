@@ -14,13 +14,64 @@
             android:id="@+id/eventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventName"
+            android:text="@string/event_date_label"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventName"
+            android:layout_toEndOf="@id/eventDateLabel"
+            android:paddingHorizontal="5dp" />
+
+        <TextView
+            android:id="@+id/eventTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventDateLabel"
+            android:text="@string/event_time_label"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventDateLabel"
+            android:layout_toEndOf="@id/eventTimeLabel"
+            android:paddingHorizontal="5dp" />
+
+        <TextView
+            android:id="@+id/eventLocationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventTimeLabel"
+            android:text="@string/event_location_label"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventTimeLabel"
+            android:layout_toEndOf="@id/eventLocationLabel"
+            android:paddingHorizontal="5dp" />
 
         <TextView
             android:id="@+id/eventDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/eventName" />
+            android:layout_below="@id/eventLocationLabel"
+            android:paddingTop="10dp" />
     </RelativeLayout>
 
 </ScrollView>
