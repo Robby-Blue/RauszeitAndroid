@@ -23,10 +23,7 @@ public class RauszeitAPI {
         new HttpRequestTask("https://rauszeit-termine.org/", (result) -> {
             Document doc = Jsoup.parse(result);
 
-            Element content = doc.getElementById("content");
-            if (content == null) return;
-
-            Element eventsList = content.getElementsByClass("css-events-list").get(0);
+            Element eventsList = doc.getElementsByClass("css-events-list").get(0);
 
             ArrayList<Day> days = new ArrayList<>();
 
@@ -42,8 +39,22 @@ public class RauszeitAPI {
         }).execute();
     }
 
+    public static void getEvent(String url, EventCallback callback) {
+        new HttpRequestTask(url, (result) -> {
+            Document doc = Jsoup.parse(result);
+
+            Event event = new Event(doc.getElementsByClass("article-inner").get(0));
+
+            callback.onResult(event);
+        }).execute();
+    }
+
     public interface AllEventsCallback {
         void onResult(ArrayList<Day> days);
+    }
+
+    public interface EventCallback {
+        void onResult(Event event);
     }
 
     public static class HttpRequestTask extends AsyncTask<Void, String, String> {

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import me.robbyblue.rauszeit.R;
-import me.robbyblue.rauszeit.event.EventAdapter;
+import me.robbyblue.rauszeit.eventpreview.EventPreviewAdapter;
 
 public class DayAdapter extends RecyclerView.Adapter<DayViewHolder> {
 
@@ -31,7 +31,7 @@ public class DayAdapter extends RecyclerView.Adapter<DayViewHolder> {
 
         holder.dateTextView.setText(day.getDate());
 
-        EventAdapter adapter = new EventAdapter(day.getEvents());
+        EventPreviewAdapter adapter = new EventPreviewAdapter(day.getEvents());
         RecyclerView recycler = holder.eventsRecycler;
         recycler.setLayoutManager(new LinearLayoutManager(holder.eventsRecycler.getContext()));
         recycler.setAdapter(adapter);

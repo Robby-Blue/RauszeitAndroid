@@ -4,24 +4,24 @@ import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 
-import me.robbyblue.rauszeit.event.Event;
+import me.robbyblue.rauszeit.eventpreview.EventPreview;
 
 public class Day {
 
     private final String date;
-    private final ArrayList<Event> events;
+    private final ArrayList<EventPreview> events;
 
     public Day(String date, Element tableElement) {
         this.date = date;
         this.events = parseEvents(tableElement);
     }
 
-    private ArrayList<Event> parseEvents(Element tableElement) {
-        ArrayList<Event> events = new ArrayList<>();
+    private ArrayList<EventPreview> parseEvents(Element tableElement) {
+        ArrayList<EventPreview> events = new ArrayList<>();
 
         Element eventsElement = tableElement.getElementsByTag("tbody").get(0);
         for (Element eventData : eventsElement.getElementsByTag("tr")) {
-            events.add(new Event(eventData));
+            events.add(new EventPreview(eventData));
         }
 
         return events;
@@ -31,7 +31,7 @@ public class Day {
         return date;
     }
 
-    public ArrayList<Event> getEvents() {
+    public ArrayList<EventPreview> getEvents() {
         return events;
     }
 }

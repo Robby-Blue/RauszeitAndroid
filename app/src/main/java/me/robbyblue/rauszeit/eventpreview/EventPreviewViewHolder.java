@@ -1,4 +1,4 @@
-package me.robbyblue.rauszeit.event;
+package me.robbyblue.rauszeit.eventpreview;
 
 import android.view.View;
 import android.widget.TextView;
@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import me.robbyblue.rauszeit.R;
 
-public class EventViewHolder extends RecyclerView.ViewHolder {
+public class EventPreviewViewHolder extends RecyclerView.ViewHolder {
 
     View view;
     TextView eventName;
     TextView eventDescription;
 
-    public EventViewHolder(View itemView) {
+    public EventPreviewViewHolder(View itemView) {
         super(itemView);
         view = itemView;
         eventName = itemView.findViewById(R.id.eventName);

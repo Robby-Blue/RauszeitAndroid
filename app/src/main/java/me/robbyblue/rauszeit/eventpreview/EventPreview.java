@@ -1,15 +1,15 @@
-package me.robbyblue.rauszeit.event;
+package me.robbyblue.rauszeit.eventpreview;
 
 import org.jsoup.nodes.Element;
 
-public class Event {
+public class EventPreview {
 
     private final String link;
     private final String name;
     private final String description;
     // add more here, like categories
 
-    public Event(Element eventData) {
+    public EventPreview(Element eventData) {
         Element importantData = eventData.getElementsByTag("td").get(1);
 
         Element nameElement = importantData.getElementsByTag("span").get(1);
