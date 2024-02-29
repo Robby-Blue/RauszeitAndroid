@@ -13,7 +13,6 @@ public class Event {
     private final String time;
     private final String locationName;
     private final String locationLink;
-    // add more here, like date and time
 
     public Event(Element eventData) {
         Element article = eventData.getElementsByClass("article-inner").get(0);

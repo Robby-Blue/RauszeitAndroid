@@ -4,9 +4,9 @@ import org.jsoup.nodes.Element;
 
 public class EventPreview {
 
-    private final String link;
-    private final String name;
-    private final String description;
+    protected String link;
+    protected String name;
+    protected String description;
     // add more here, like categories
 
     public EventPreview(Element eventData) {
@@ -17,6 +17,9 @@ public class EventPreview {
         this.name = nameElement.text();
         Element descriptionElement = importantData.getElementsByTag("span").get(2);
         this.description = descriptionElement.text();
+    }
+
+    protected EventPreview() {
     }
 
     public String getLink() {

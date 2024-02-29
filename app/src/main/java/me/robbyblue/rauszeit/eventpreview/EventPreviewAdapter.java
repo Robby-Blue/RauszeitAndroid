@@ -3,6 +3,7 @@ package me.robbyblue.rauszeit.eventpreview;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,9 @@ public class EventPreviewAdapter extends RecyclerView.Adapter<EventPreviewViewHo
 
         holder.eventName.setText(event.getName());
         holder.eventDescription.setText(event.getDescription());
+
+        boolean hasDescription = event.getDescription().trim().length() > 0;
+        holder.eventDescription.setVisibility(hasDescription ? View.VISIBLE : View.GONE);
 
         holder.view.setOnClickListener((v) -> {
             Context context = v.getContext();

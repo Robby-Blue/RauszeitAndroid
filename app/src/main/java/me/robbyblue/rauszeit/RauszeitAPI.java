@@ -16,6 +16,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import me.robbyblue.rauszeit.day.Day;
+import me.robbyblue.rauszeit.eventpreview.EventPreview;
+import me.robbyblue.rauszeit.eventpreview.SearchResultEventPreview;
 
 public class RauszeitAPI {
 
@@ -49,8 +51,28 @@ public class RauszeitAPI {
         }).execute();
     }
 
+    public static void getSearchResults(String query, EventPreviewsCallback callback) {
+        new HttpRequestTask("https://rauszeit-termine.org/?s="+query, (result) -> {
+            Document doc = Jsoup.parse(result);
+
+            Element eventsElement = doc.getElementsByClass("content-masonry").get(0);
+
+            ArrayList<EventPreview> events = new ArrayList<>();
+
+            for (Element child : eventsElement.children()) {
+                events.add(new SearchResultEventPreview(child));
+            }
+
+            callback.onResult(events);
+        }).execute();
+    }
+
     public interface AllEventsCallback {
         void onResult(ArrayList<Day> days);
+    }
+
+    public interface EventPreviewsCallback {
+        void onResult(ArrayList<EventPreview> events);
     }
 
     public interface EventCallback {

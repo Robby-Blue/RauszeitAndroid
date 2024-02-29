@@ -1,6 +1,9 @@
 package me.robbyblue.rauszeit;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +23,25 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView recycler = findViewById(R.id.daysRecycler);
             recycler.setLayoutManager(new LinearLayoutManager(this));
             recycler.setAdapter(adapter);
+        });
+
+        EditText searchBar = findViewById(R.id.searchBar);
+        searchBar.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                Intent intent = new Intent().setClass(this, SearchActivity.class);
+                intent.putExtra("query", searchBar.getText().toString());
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
+
+        searchBar.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            // clears text and focus after closed
+            if (oldTop < top) {
+                searchBar.clearFocus();
+                searchBar.setText("");
+            }
         });
     }
 
