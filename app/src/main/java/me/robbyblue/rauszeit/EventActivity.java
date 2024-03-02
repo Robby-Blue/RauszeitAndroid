@@ -1,5 +1,6 @@
 package me.robbyblue.rauszeit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -30,7 +31,9 @@ public class EventActivity extends AppCompatActivity {
             locationView.setText(locationSpan);
 
             locationView.setOnClickListener((e) -> {
-                // TODO: open activity about the location
+                Intent intent = new Intent().setClass(this, LocationActivity.class);
+                intent.putExtra("link", event.getLocationLink());
+                startActivity(intent);
             });
         });
     }

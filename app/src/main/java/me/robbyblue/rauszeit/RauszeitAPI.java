@@ -52,7 +52,7 @@ public class RauszeitAPI {
     }
 
     public static void getSearchResults(String query, EventPreviewsCallback callback) {
-        new HttpRequestTask("https://rauszeit-termine.org/?s="+query, (result) -> {
+        new HttpRequestTask("https://rauszeit-termine.org/?s=" + query, (result) -> {
             Document doc = Jsoup.parse(result);
 
             Element eventsElement = doc.getElementsByClass("content-masonry").get(0);
@@ -67,6 +67,16 @@ public class RauszeitAPI {
         }).execute();
     }
 
+    public static void getLocation(String url, LocationCallback callback) {
+        new HttpRequestTask(url, (result) -> {
+            Document doc = Jsoup.parse(result);
+
+            Element article = doc.getElementsByClass("article-inner").get(0);
+
+            callback.onResult(new Location(article));
+        }).execute();
+    }
+
     public interface AllEventsCallback {
         void onResult(ArrayList<Day> days);
     }
@@ -77,6 +87,10 @@ public class RauszeitAPI {
 
     public interface EventCallback {
         void onResult(Event event);
+    }
+
+    public interface LocationCallback {
+        void onResult(Location location);
     }
 
     public static class HttpRequestTask extends AsyncTask<Void, String, String> {
